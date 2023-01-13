@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>{{.Title}}</title>
+        <link>https://{{.Host}}</link>
+        <description>{{.SubTitle}}</description>
+        <atom:link href="https://{{.Host}}/rss.html" rel="self" />
+        <atom:link href="{{.FeedrURL}}" rel="hub" />
+        <language>zh-CN</language>
+        <lastBuildDate>{{.BuildDate}}</lastBuildDate>
+        {{range .Articles}}
+        <item>
+            <title>{{.Title}}</title>
+            <link>https://{{$.Host}}/post/{{.Slug}}.html</link>
+            <comments>https://{{$.Host}}/post/{{.Slug}}.html#comments</comments>
+            <guid>https://{{$.Host}}/post/{{.Slug}}.html</guid>
+            <description>
+                <![CDATA[{{imgtonormal .Content}}<p>本文链接：<a href="https://{{$.Host}}/post/{{.Slug}}.html">https://{{$.Host}}/post/{{.Slug}}.html</a>，<a href="https://{{$.Host}}/post/{{.Slug}}.html#comments">参与评论 »</a></p>]]>
+            </description>
+            <pubDate>{{dateformat .CreatedAt "Mon, 02 Jan 2006 15:04:05 -0700"}}</pubDate>
+        </item>
+        {{end}}
+    </channel>
+</rss>
