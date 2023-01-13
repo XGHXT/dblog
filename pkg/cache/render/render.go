@@ -9,7 +9,7 @@ import (
 	"github.com/XGHXT/dblog/pkg/model"
 	"github.com/XGHXT/dblog/tools"
 
-	"github.com/russross/blackfriday"
+	"github.com/eiblog/blackfriday"
 )
 
 // blackfriday 配置

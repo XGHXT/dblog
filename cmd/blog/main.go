@@ -3,6 +3,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/XGHXT/dblog/pkg/core/blog"
 	"path/filepath"
 
 	"github.com/XGHXT/dblog/pkg/config"
@@ -39,9 +40,6 @@ func runHTTPServer(endRun chan error) {
 		Secure: config.Conf.RunMode == config.ModeProd,
 		Secret: []byte("ZGlzvcmUoMTAsICI="),
 	}))
-
-	// swag
-	swag.RegisterRoutes(e)
 
 	// static files, page
 	root := filepath.Join(config.WorkDir, "assets")
