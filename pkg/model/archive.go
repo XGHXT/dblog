@@ -7,7 +7,7 @@ import "time"
 
 // Archive 归档
 type Archive struct {
-	Time time.Time `gorm:"column:time;not null" bson:"time"`
+	Time time.Time `gorm:"type:datetime;type:datetime;column:time;not null" bson:"time"`
 
 	Articles SortedArticles `gorm:"-" bson:"-"` // 归档下的文章
 }

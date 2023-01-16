@@ -5,11 +5,11 @@ import "time"
 
 // Serie 专题
 type Serie struct {
-	ID        int       `gorm:"column:id;primaryKey" bson:"id"`                                // 自增ID
-	Slug      string    `gorm:"column:slug;not null;uniqueIndex" bson:"slug"`                  // 缩略名
-	Name      string    `gorm:"column:name;not null" bson:"name"`                              // 专题名
-	Desc      string    `gorm:"column:desc;not null" bson:"desc"`                              // 专题描述
-	CreatedAt time.Time `gorm:"column:created_at;default:current_timestamp" bson:"created_at"` // 创建时间
+	ID        int       `gorm:"column:id;primaryKey;size:32" bson:"id"`                                      // 自增ID
+	Slug      string    `gorm:"column:slug;not null;uniqueIndex;size:128" bson:"slug"`                       // 缩略名
+	Name      string    `gorm:"column:name;not null;size:128" bson:"name"`                                   // 专题名
+	Desc      string    `gorm:"column:desc;not null;size:128" bson:"desc"`                                   // 专题描述
+	CreatedAt time.Time `gorm:"type:datetime;column:created_at;default:current_timestamp" bson:"created_at"` // 创建时间
 
 	Articles SortedArticles `gorm:"-" bson:"-"` // 专题下的文章
 }
