@@ -424,7 +424,7 @@ func (c *Cache) loadOrInit() error {
 			Author:    blogapp.Account.Username,
 			Title:     "关于",
 			Slug:      "about",
-			CreatedAt: time.Time{}.AddDate(0, 0, 1),
+			CreatedAt: time.Now(),
 		}
 		err = c.InsertArticle(context.Background(), about, ArticleStartID)
 		if err != nil {
@@ -437,7 +437,7 @@ func (c *Cache) loadOrInit() error {
 			Author:    blogapp.Account.Username,
 			Title:     "友情链接",
 			Slug:      "blogroll",
-			CreatedAt: time.Time{}.AddDate(0, 0, 7),
+			CreatedAt: time.Now(),
 		}
 		err = c.InsertArticle(context.Background(), blogroll, ArticleStartID)
 		if err != nil {

@@ -193,8 +193,8 @@ func (db *rdbms) LoadArticleList(ctx context.Context, search SearchArticles) (mo
 // register store
 func init() {
 	Register("mysql", &rdbms{})
-	Register("postgres", &rdbms{})
-	Register("sqlite", &rdbms{})
-	Register("sqlserver", &rdbms{})
-	Register("clickhouse", &rdbms{})
+	//Register("postgres", &rdbms{})
+	//Register("sqlite", &rdbms{})
+	//Register("sqlserver", &rdbms{})
+	//Register("clickhouse", &rdbms{})
 }

@@ -5,7 +5,7 @@ import "time"
 
 // Serie 专题
 type Serie struct {
-	ID        int       `gorm:"column:id;primaryKey;size:32" bson:"id"`                                      // 自增ID
+	ID        int       `gorm:"column:id;primaryKey;size:64" bson:"id"`                                      // 自增ID
 	Slug      string    `gorm:"column:slug;not null;uniqueIndex;size:128" bson:"slug"`                       // 缩略名
 	Name      string    `gorm:"column:name;not null;size:128" bson:"name"`                                   // 专题名
 	Desc      string    `gorm:"column:desc;not null;size:128" bson:"desc"`                                   // 专题描述

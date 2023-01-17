@@ -351,5 +351,5 @@ func (db *mongodb) nextValue(ctx context.Context, name string) int {
 
 // register store
 func init() {
-	Register("mongodb", &mongodb{})
+	//Register("mongodb", &mongodb{})
 }
