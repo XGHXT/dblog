@@ -418,7 +418,7 @@ func (c *Cache) loadOrInit() error {
 		return err
 	}
 	c.Blogger = blogger
-	if created { // init articles: about blogroll
+	if !created { // init articles: about blogroll
 		about := &model.Article{
 			ID:        1, // 固定ID
 			Author:    blogapp.Account.Username,

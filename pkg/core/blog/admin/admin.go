@@ -440,8 +440,7 @@ func handleAPITrashRecover(c *gin.Context) {
 
 		}
 		err = cache.Ei.UpdateArticle(context.Background(), id, map[string]interface{}{
-			"deleted_at": time.Time{},
-			"is_draft":   true,
+			"is_draft": true,
 		})
 		if err != nil {
 			responseNotice(c, NoticeNotice, err.Error(), "")

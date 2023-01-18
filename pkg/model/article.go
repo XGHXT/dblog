@@ -22,9 +22,9 @@ type Article struct {
 	IsDraft bool           `gorm:"column:is_draft;not null" bson:"is_draft"`              // 是否是草稿
 	Thread  string         `gorm:"column:thread;size:255" bson:"thread"`                  // disqus thread
 
-	DeletedAt *time.Time `gorm:"autoUpdateTime;type:datetime;column:deleted_at" bson:"deleted_at"`                           // 删除时间
-	UpdatedAt time.Time  `gorm:"autoCreateTime;type:datetime;column:updated_at;default:current_timestamp" bson:"updated_at"` // 更新时间
-	CreatedAt time.Time  `gorm:"type:datetime;column:created_at" bson:"created_at"`                                          // 创建时间
+	DeletedAt *time.Time `gorm:"type:datetime;column:deleted_at" bson:"deleted_at"`                                          // 删除时间
+	UpdatedAt time.Time  `gorm:"autoUpdateTime;type:datetime;column:updated_at;default:current_timestamp" bson:"updated_at"` // 更新时间
+	CreatedAt time.Time  `gorm:"autoCreateTime;type:datetime;column:created_at" bson:"created_at"`                           // 创建时间
 
 	Header  string   `gorm:"-" bson:"-"` // header
 	Excerpt string   `gorm:"-" bson:"-"` // 预览信息
