@@ -143,7 +143,7 @@ func (db *rdbms) RemoveArticle(ctx context.Context, id int) error {
 
 // CleanArticles 清理回收站文章
 func (db *rdbms) CleanArticles(ctx context.Context, exp time.Time) error {
-	return db.Where("deleted_at BETWEEN ? AND ?", time.Time{}, exp).Delete(model.Article{}).Error
+	return db.Where("deleted_at BETWEEN ? AND ?", time.Now(), exp).Delete(model.Article{}).Error
 }
 
 // UpdateArticle 更新文章
@@ -167,14 +167,14 @@ func (db *rdbms) LoadArticleList(ctx context.Context, search SearchArticles) (mo
 			if ok := v.(bool); ok {
 				gormDB = gormDB.Where("is_draft=?", true)
 			} else {
-				gormDB = gormDB.Where("is_draft=? AND deleted_at=?", false, time.Time{})
+				gormDB = gormDB.Where("is_draft=? AND deleted_at=?", false, time.Now())
 			}
 		case SearchArticleTitle:
 			gormDB = gormDB.Where("title LIKE ?", "%"+v.(string)+"%")
 		case SearchArticleSerieID:
 			gormDB = gormDB.Where("serie_id=?", v.(int))
 		case SearchArticleTrash:
-			gormDB = gormDB.Where("deleted_at!=?", time.Time{})
+			gormDB = gormDB.Where("deleted_at!=?", time.Now())
 		}
 	}
 	// search count
