@@ -2,6 +2,7 @@
 package tools
 
 import (
+	"github.com/sirupsen/logrus"
 	"regexp"
 )
 
@@ -12,10 +13,11 @@ func ValidateEmail(e string) bool {
 	return regexpEmail.MatchString(e)
 }
 
-var regexpPhoneNo = regexp.MustCompile(`^\+\d+$`)
+var regexpPhoneNo = regexp.MustCompile(`^1([38][0-9]|14[579]|5[^4]|16[6]|7[1-35-8]|9[189])\d{8}$`)
 
 // ValidatePhoneNo 校验手机号
 func ValidatePhoneNo(no string) bool {
+	logrus.Info(no)
 	return regexpPhoneNo.MatchString(no)
 }
 
