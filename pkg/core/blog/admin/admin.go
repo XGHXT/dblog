@@ -304,19 +304,19 @@ func handleAPIPostCreate(c *gin.Context) {
 	if artc != nil {
 		article.IsDraft = false
 		article.Count = artc.Count
-		article.UpdatedAt = artc.UpdatedAt
+		//article.UpdatedAt = artc.UpdatedAt
 	}
 	if update == "true" || update == "1" {
 		article.UpdatedAt = time.Now()
 	}
 	// 数据库更新
 	err = cache.Ei.UpdateArticle(context.Background(), article.ID, map[string]interface{}{
-		"title":      article.Title,
-		"content":    article.Content,
-		"serie_id":   article.SerieID,
-		"is_draft":   article.IsDraft,
-		"tags":       article.Tags,
-		"updated_at": article.UpdatedAt,
+		"title":    article.Title,
+		"content":  article.Content,
+		"serie_id": article.SerieID,
+		"is_draft": article.IsDraft,
+		"tags":     article.Tags,
+		//"updated_at": article.UpdatedAt,
 		"created_at": article.CreatedAt,
 	})
 	if err != nil {
