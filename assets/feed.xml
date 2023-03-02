@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>'s Blog</title>
+        <link>https://example.com</link>
+        <description>Rome was not built in one day.</description>
+        <atom:link href="https://example.com/rss.html" rel="self" />
+        <atom:link href="https://deepzz.superfeedr.com/" rel="hub" />
+        <language>zh-CN</language>
+        <lastBuildDate>Thu, 02 Mar 2023 16:01:08 +0800</lastBuildDate>
+        
+    </channel>
+</rss>
