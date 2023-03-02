@@ -16,7 +16,7 @@ import (
 var htmlTmpl *template.Template
 
 func init() {
-	htmlTmpl = template.New("blog").Funcs(tools.TplFuncMap)
+	htmlTmpl = template.New("dblog").Funcs(tools.TplFuncMap)
 	root := filepath.Join(config.WorkDir, "website")
 	files := tools.ReadDirFiles(root, func(fi fs.FileInfo) bool {
 		name := fi.Name()

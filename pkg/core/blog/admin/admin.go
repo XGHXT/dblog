@@ -5,6 +5,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"github.com/XGHXT/dblog/pkg/core/blog"
 	"net/http"
 	"strconv"
 	"strings"
@@ -12,10 +13,10 @@ import (
 
 	"github.com/XGHXT/dblog/pkg/cache"
 	"github.com/XGHXT/dblog/pkg/config"
-	"github.com/XGHXT/dblog/pkg/core/blog"
 	"github.com/XGHXT/dblog/pkg/internal"
 	"github.com/XGHXT/dblog/pkg/model"
 	"github.com/XGHXT/dblog/tools"
+
 	"github.com/gin-gonic/gin"
 	"github.com/sirupsen/logrus"
 )
@@ -304,19 +305,19 @@ func handleAPIPostCreate(c *gin.Context) {
 	if artc != nil {
 		article.IsDraft = false
 		article.Count = artc.Count
-		//article.UpdatedAt = artc.UpdatedAt
+		article.UpdatedAt = artc.UpdatedAt
 	}
 	if update == "true" || update == "1" {
 		article.UpdatedAt = time.Now()
 	}
 	// 数据库更新
 	err = cache.Ei.UpdateArticle(context.Background(), article.ID, map[string]interface{}{
-		"title":    article.Title,
-		"content":  article.Content,
-		"serie_id": article.SerieID,
-		"is_draft": article.IsDraft,
-		"tags":     article.Tags,
-		//"updated_at": article.UpdatedAt,
+		"title":      article.Title,
+		"content":    article.Content,
+		"serie_id":   article.SerieID,
+		"is_draft":   article.IsDraft,
+		"tags":       article.Tags,
+		"updated_at": article.UpdatedAt,
 		"created_at": article.CreatedAt,
 	})
 	if err != nil {
@@ -440,7 +441,8 @@ func handleAPITrashRecover(c *gin.Context) {
 
 		}
 		err = cache.Ei.UpdateArticle(context.Background(), id, map[string]interface{}{
-			"is_draft": true,
+			"deleted_at": time.Time{},
+			"is_draft":   true,
 		})
 		if err != nil {
 			responseNotice(c, NoticeNotice, err.Error(), "")

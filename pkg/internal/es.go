@@ -25,7 +25,7 @@ const (
 	SearchTerm   = `{"term":{"%s":"%s"}}`
 	SearchDate   = `{"range":{"date":{"gte":"%s","lte": "%s","format": "yyyy-MM-dd||yyyy-MM||yyyy"}}}` // 2016-10||/M
 
-	ElasticIndex = "blog"
+	ElasticIndex = "dblog"
 	ElasticType  = "article"
 )
 

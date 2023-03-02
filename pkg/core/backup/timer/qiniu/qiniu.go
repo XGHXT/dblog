@@ -36,15 +36,15 @@ func backupFromMongoDB(now time.Time) error {
 	if err != nil {
 		return err
 	}
-	arg := fmt.Sprintf("mongodump -h %s -d blog -o /tmp", u.Host)
+	arg := fmt.Sprintf("mongodump -h %s -d dblog -o /tmp", u.Host)
 	cmd := exec.CommandContext(ctx, "sh", "-c", arg)
 	err = cmd.Run()
 	if err != nil {
 		return err
 	}
 	// tar
-	name := fmt.Sprintf("blog-%s.tar.gz", now.Format("2006-01-02"))
-	arg = fmt.Sprintf("tar czf /tmp/%s -C /tmp blog", name)
+	name := fmt.Sprintf("dblog-%s.tar.gz", now.Format("2006-01-02"))
+	arg = fmt.Sprintf("tar czf /tmp/%s -C /tmp dblog", name)
 	cmd = exec.CommandContext(ctx, "sh", "-c", arg)
 	err = cmd.Run()
 	if err != nil {

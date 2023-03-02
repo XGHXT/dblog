@@ -19,7 +19,7 @@ import (
 //   source: mongodb://localhost:27017
 
 const (
-	mongoDBName       = "blog"
+	mongoDBName       = "dblog"
 	collectionAccount = "account"
 	collectionArticle = "article"
 	collectionBlogger = "blogger"
@@ -296,7 +296,7 @@ func (db *mongodb) LoadArticleList(ctx context.Context, search SearchArticles) (
 		case SearchArticleSerieID:
 			filter["serie_id"] = v.(int)
 		case SearchArticleTrash:
-			filter["deleted_at"] = bson.M{"$ne": time.Now()}
+			filter["deleted_at"] = bson.M{"$ne": time.Time{}}
 		}
 	}
 	// search count
@@ -351,5 +351,5 @@ func (db *mongodb) nextValue(ctx context.Context, name string) int {
 
 // register store
 func init() {
-	//Register("mongodb", &mongodb{})
+	Register("mongodb", &mongodb{})
 }

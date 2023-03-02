@@ -22,7 +22,7 @@ import (
 )
 
 var (
-	// Ei blog cache
+	// Ei eiblog cache
 	Ei *Cache
 
 	// PagesCh regenerate pages chan
@@ -418,13 +418,13 @@ func (c *Cache) loadOrInit() error {
 		return err
 	}
 	c.Blogger = blogger
-	if !created { // init articles: about blogroll
+	if created { // init articles: about blogroll
 		about := &model.Article{
 			ID:        1, // 固定ID
 			Author:    blogapp.Account.Username,
 			Title:     "关于",
 			Slug:      "about",
-			CreatedAt: time.Now(),
+			CreatedAt: time.Time{}.AddDate(0, 0, 1),
 		}
 		err = c.InsertArticle(context.Background(), about, ArticleStartID)
 		if err != nil {
@@ -437,7 +437,7 @@ func (c *Cache) loadOrInit() error {
 			Author:    blogapp.Account.Username,
 			Title:     "友情链接",
 			Slug:      "blogroll",
-			CreatedAt: time.Now(),
+			CreatedAt: time.Time{}.AddDate(0, 0, 7),
 		}
 		err = c.InsertArticle(context.Background(), blogroll, ArticleStartID)
 		if err != nil {
