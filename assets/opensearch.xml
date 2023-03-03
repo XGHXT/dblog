@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/"
   xmlns:moz="http://www.mozilla.org/2006/browser/search/">
-    <ShortName>'s Blog</ShortName>
-    <Description>Rome was not built in one day.</Description>
+    <ShortName>野喜噢柯</ShortName>
+    <Description>你拍一我拍一</Description>
     <InputEncoding>UTF-8</InputEncoding>
     <Url type="text/html" method="get" template="https://example.com/search.html?q={searchTerms}" />
     <moz:SearchForm>https://example.com/search.html</moz:SearchForm>
