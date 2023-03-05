@@ -47,7 +47,6 @@ func RegisterRoutes(e *gin.Engine) {
 	e.GET("/disqus/post-:slug", handleDisqusList)
 	e.GET("/disqus/form/post-:slug", handleDisqusPage)
 	e.POST("/disqus/create", handleDisqusCreate)
-	e.GET("/beacon.html", handleBeaconPage)
 
 	// login page
 	e.GET("/admin/login", handleLoginPage)

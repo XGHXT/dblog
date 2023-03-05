@@ -63,15 +63,6 @@ type Twitter struct {
 	Address string `yaml:"address"`
 }
 
-// Google analytics
-type Google struct {
-	URL     string `yaml:"url"`
-	Tid     string `yaml:"tid"`
-	V       string `yaml:"v"`
-	T       string `yaml:"t"`
-	AdSense string `yaml:"adsense"`
-}
-
 // Qiniu oss
 type Qiniu struct {
 	Bucket    string `yaml:"bucket"`
@@ -112,7 +103,6 @@ type BlogApp struct {
 	HotWords      []string `yaml:"hotwords"`
 	General       General  `yaml:"general"`
 	Disqus        Disqus   `yaml:"disqus"`
-	Google        Google   `yaml:"google"`
 	Qiniu         Qiniu    `yaml:"qiniu"`
 	Twitter       Twitter  `yaml:"twitter"`
 	FeedRPC       FeedRPC  `yaml:"feedrpc"`

@@ -6,7 +6,6 @@ import (
 	"context"
 	"fmt"
 	htemplate "html/template"
-	"io/ioutil"
 	"net/http"
 	"strconv"
 	"strings"
@@ -40,7 +39,6 @@ func baseFEParams(c *gin.Context) gin.H {
 		"Twitter":  config.Conf.BlogApp.Twitter,
 		"Qiniu":    config.Conf.BlogApp.Qiniu,
 		"Disqus":   config.Conf.BlogApp.Disqus,
-		"AdSense":  config.Conf.BlogApp.Google.AdSense,
 		"Version":  version,
 	}
 }
@@ -332,46 +330,6 @@ func handleDisqusCreate(c *gin.Context) {
 		Message:      postDetail.Response.Message,
 		IsDeleted:    postDetail.Response.IsDeleted,
 	}
-}
-
-// handleBeaconPage 服务端推送谷歌统计
-func handleBeaconPage(c *gin.Context) {
-	ua := c.Request.UserAgent()
-
-	vals := c.Request.URL.Query()
-	vals.Set("v", config.Conf.BlogApp.Google.V)
-	vals.Set("tid", config.Conf.BlogApp.Google.Tid)
-	vals.Set("t", config.Conf.BlogApp.Google.T)
-	cookie, _ := c.Cookie("u")
-	vals.Set("cid", cookie)
-
-	vals.Set("dl", c.Request.Referer())
-	vals.Set("uip", c.ClientIP())
-	go func() {
-		req, err := http.NewRequest("POST", config.Conf.BlogApp.Google.URL,
-			strings.NewReader(vals.Encode()))
-		if err != nil {
-			logrus.Error("HandleBeaconPage.NewRequest: ", err)
-			return
-		}
-		req.Header.Set("User-Agent", ua)
-		req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
-		res, err := http.DefaultClient.Do(req)
-		if err != nil {
-			logrus.Error("HandleBeaconPage.Do: ", err)
-			return
-		}
-		defer res.Body.Close()
-		data, err := ioutil.ReadAll(res.Body)
-		if err != nil {
-			logrus.Error("HandleBeaconPage.ReadAll: ", err)
-			return
-		}
-		if res.StatusCode/100 != 2 {
-			logrus.Error(string(data))
-		}
-	}()
-	c.Status(http.StatusNoContent)
 }
 
 // renderHTMLHomeLayout homelayout html
