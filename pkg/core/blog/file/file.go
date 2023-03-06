@@ -9,7 +9,6 @@ import (
 
 // RegisterRoutes register routes
 func RegisterRoutes(e *gin.Engine) {
-	e.GET("/rss.html", handleFeed)
 	e.GET("/feed", handleFeed)
 	e.GET("/opensearch.xml", handleOpensearch)
 	e.GET("/sitemap.xml", handleSitemap)

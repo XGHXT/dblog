@@ -291,8 +291,6 @@ func handleAPIPostCreate(c *gin.Context) {
 			go func() {
 				// elastic
 				internal.ElasticAddIndex(article)
-				// rss
-				internal.PingFunc(cache.Ei.Blogger.BTitle, slug)
 				// disqus
 				internal.ThreadCreate(article, cache.Ei.Blogger.BTitle)
 			}()
@@ -330,8 +328,6 @@ func handleAPIPostCreate(c *gin.Context) {
 		go func() {
 			// elastic
 			internal.ElasticAddIndex(article)
-			// rss
-			internal.PingFunc(cache.Ei.Blogger.BTitle, slug)
 			// disqus
 			if artc == nil {
 				internal.ThreadCreate(article, cache.Ei.Blogger.BTitle)

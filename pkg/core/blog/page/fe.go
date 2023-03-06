@@ -36,7 +36,6 @@ func baseFEParams(c *gin.Context) gin.H {
 		"BeiAn":    cache.Ei.Blogger.BeiAn,
 		"Domain":   config.Conf.BlogApp.Host,
 		"CopyYear": time.Now().Year(),
-		"Twitter":  config.Conf.BlogApp.Twitter,
 		"Qiniu":    config.Conf.BlogApp.Qiniu,
 		"Disqus":   config.Conf.BlogApp.Disqus,
 		"Version":  version,

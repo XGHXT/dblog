@@ -55,26 +55,12 @@ type Disqus struct {
 	AccessToken string `yaml:"accesstoken"`
 }
 
-// Twitter card
-type Twitter struct {
-	Card    string `yaml:"card"`
-	Site    string `yaml:"site"`
-	Image   string `yaml:"image"`
-	Address string `yaml:"address"`
-}
-
 // Qiniu oss
 type Qiniu struct {
 	Bucket    string `yaml:"bucket"`
 	Domain    string `yaml:"domain"`
 	AccessKey string `yaml:"accesskey"`
 	SecretKey string `yaml:"secretkey"`
-}
-
-// FeedRPC feedr
-type FeedRPC struct {
-	FeedrURL string   `yaml:"feedrurl"`
-	PingRPC  []string `yaml:"pingrpc"`
 }
 
 // Account info
@@ -104,8 +90,6 @@ type BlogApp struct {
 	General       General  `yaml:"general"`
 	Disqus        Disqus   `yaml:"disqus"`
 	Qiniu         Qiniu    `yaml:"qiniu"`
-	Twitter       Twitter  `yaml:"twitter"`
-	FeedRPC       FeedRPC  `yaml:"feedrpc"`
 	Account       Account  `yaml:"account"`
 	Blogger       Blogger  `yaml:"blogger"`
 }

@@ -30,40 +30,7 @@ func init() {
 	generateOpensearch()
 	generateRobots()
 	generateCrossdomain()
-	go timerFeed()
 	go timerSitemap()
-}
-
-// timerFeed 定时刷新feed
-func timerFeed() {
-	tpl := xmlTmpl.Lookup("feedTpl.xml")
-	if tpl == nil {
-		logrus.Info("file: not found: feedTpl.xml")
-		return
-	}
-
-	now := time.Now()
-	_, _, articles := cache.Ei.PageArticleFE(1, 20)
-	params := map[string]interface{}{
-		"Title":     cache.Ei.Blogger.BTitle,
-		"SubTitle":  cache.Ei.Blogger.SubTitle,
-		"Host":      config.Conf.BlogApp.Host,
-		"FeedrURL":  config.Conf.BlogApp.FeedRPC.FeedrURL,
-		"BuildDate": now.Format(time.RFC1123Z),
-		"Articles":  articles,
-	}
-	f, err := os.OpenFile("assets/feed.xml", os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0666)
-	if err != nil {
-		logrus.Error("file: timerFeed.OpenFile: ", err)
-		return
-	}
-	defer f.Close()
-	err = tpl.Execute(f, params)
-	if err != nil {
-		logrus.Error("file: timerFeed.Execute: ", err)
-		return
-	}
-	time.AfterFunc(time.Hour*4, timerFeed)
 }
 
 // timerSitemap 定时刷新sitemap
